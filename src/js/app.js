@@ -1,4 +1,5 @@
-
+import Ui from "./ui";
+import BookManager from "./bookManager.js";
 
 // SELECT DOM ELEMENTS
 const openAddModalButton = document.querySelector(".add-books__button");
@@ -35,3 +36,40 @@ const audioFields = [
   document.querySelector(".form__narrator-input"),
   document.querySelector(".form__duration-input"),
 ];
+
+// ADDING EVENT LISTERNERS
+document.addEventListener("DOMContentLoaded", () => {
+    Ui.displayAddModal(
+        openAddModalButton,
+        formModal, 
+        printedBookContainer,
+        audioBookContainer
+    ); 
+    Ui.closeAddModal(closeAddModalButton, formModal);
+    
+});
+
+bookTypeDropdown.addEventListener("change", () => {
+        Ui.toggleBookTypeFields(
+            printedBookContainer, 
+            audioBookContainer, 
+            audioFields, 
+            printedFields, 
+            bookTypeDropdown.value
+        );
+    }); 
+
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        BookManager.addBook(
+            title.value.trim(), 
+            author.value.trim(), 
+            publisher.value.trim(),
+            date.value, 
+            bookTypeDropdown.value, 
+            pages.value.trim(), 
+            printType.value,
+            narrator.value.trim(), 
+            duration.value
+        );
+    });
