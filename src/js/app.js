@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
         audioBookContainer
     ); 
     Ui.closeAddModal(closeAddModalButton, formModal);
-    
+    Ui.renderBooks()
 });
 
 bookTypeDropdown.addEventListener("change", () => {
@@ -72,4 +72,5 @@ bookTypeDropdown.addEventListener("change", () => {
             narrator.value.trim(), 
             duration.value
         );
+        Ui.renderBooks()
     });
