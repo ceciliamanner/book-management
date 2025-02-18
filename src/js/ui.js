@@ -46,13 +46,19 @@ class Ui {
         });
     }
 
-    static renderBooks(){
+    static renderBooks(filter = "all") {
         const bookList = document.querySelector(".books__list"); 
         bookList.innerHTML = ""; 
         const booksCollection = JSON.parse(localStorage.getItem("books-collection")
         );
 
-        booksCollection.forEach((book, index, arr) => {
+
+        const filterCollection = filter === "all" 
+        ? booksCollection 
+        : booksCollection.filter((book) => book.bookType === filter);
+
+        if(filterCollection){
+        filterCollection.forEach((book, index, arr) => {
             const bookCard = document.createElement("li"); 
             const bookDetailsContainer = document.createElement("div"); 
             const bookToolsContainer = document.createElement("div"); 
@@ -135,7 +141,8 @@ class Ui {
             editButton.classList.add("book-item__edit-button");
 
 
-        });
+          });
+        }
     }
 }
 
