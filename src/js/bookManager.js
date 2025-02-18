@@ -4,6 +4,7 @@ import AudioBook from "./audioBook.js";
 import Ui from "./ui"; */
 
 class BookManager {
+    static booksCollection = JSON.parse(localStorage.getItem("books-collection")) || [];
     static addBook(
         title,
         author, 
@@ -15,7 +16,7 @@ class BookManager {
         narrator,
         duration
     ){
-        let book; 
+        let book;
         if(bookType === "printed-book"){
             book = new PrintedBook(
                 title, 
@@ -39,7 +40,8 @@ class BookManager {
                 duration
             ); 
         }
-        console.log(book);
+        BookManager.booksCollection.push(book); 
+        console.log(this.booksCollection);
         
     }
 }
